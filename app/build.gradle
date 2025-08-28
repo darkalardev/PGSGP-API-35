@@ -1,55 +1,54 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+plugins {
+    id "com.android.library"
+    id "org.jetbrains.kotlin.android"
+}
 
 android {
-    compileSdk 34
-    namespace 'io.cgisca.godot.gpgs'
-    def libName = project.property("library_name")
-    defaultConfig {
+    namespace "io.cgisca.godot.gpgs"
+    compileSdk 35
 
-        targetSdk 34
-        buildConfigField "String", "LIBRARY_NAME", "\"$libName\""
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
     defaultConfig {
-        minSdkVersion 24
+        minSdk 24
+        targetSdk 35
+
+        def libName = project.findProperty("library_name") ?: "GodotPlayGamesServices"
+        buildConfigField "String", "LIBRARY_NAME", "\"${libName}\""
+
+        consumerProguardFiles "consumer-rules.pro"
         versionCode 1
         versionName "1.0"
     }
 
-
-    libraryVariants.all { variant ->
-        variant.outputs.all { output ->
-            output.outputFileName = "$libName.${variant.name}.aar"
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions { jvmTarget = "17" }
+
     buildFeatures {
         viewBinding true
-        buildConfig true
+        buildConfig  true
     }
-    buildToolsVersion '34.0.0'
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'com.google.android.gms:play-services-games:23.2.0'
-    implementation 'com.google.android.gms:play-services-auth:21.2.0'
-    implementation 'com.google.android.gms:play-services-location:21.3.0'
-    implementation 'com.google.code.gson:gson:2.10'
-    implementation("org.godotengine:godot:4.2.1.stable")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
+    implementation "com.google.android.gms:play-services-games:23.2.0"
+    implementation "com.google.android.gms:play-services-auth:21.2.0"
+    implementation "com.google.android.gms:play-services-location:21.3.0"
+    implementation "com.google.code.gson:gson:2.10"
 
-    testImplementation 'junit:junit:4.13.2'
+    implementation files("../godot-lib.release/godot-lib.4.5.beta5.template_release.aar")
+
+    testImplementation "junit:junit:4.13.2"
 }

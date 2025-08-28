@@ -1,9 +1,9 @@
-# Google Play Games Services Plugin for Godot - Android API 35
-This is an Android Play Games Services plugin for Godot Game Engine 4.5 Beta 5.
+# Google Play Games Services Plugin for Godot 4.2.x
+This is an Android Play Games Services plugin for Godot Game Engine 4.2.x.
 
 [![Android](https://img.shields.io/badge/Platform-Android-brightgreen.svg)](https://developer.android.com)
-[![Godot](https://img.shields.io/badge/Godot%20Engine-4.5-blue.svg)](https://github.com/godotengine/godot/)
-[![PGS](https://img.shields.io/badge/Play%20Games%20Services-23.2.0-green.svg)](https://developers.google.com/games/services/android/quickstart)
+[![Godot](https://img.shields.io/badge/Godot%20Engine-3.5.2-blue.svg)](https://github.com/godotengine/godot/)
+[![PGS](https://img.shields.io/badge/Play%20Games%20Services-20.0.1-green.svg)](https://developers.google.com/games/services/android/quickstart)
 [![MIT license](https://img.shields.io/badge/License-MIT-yellowgreen.svg)](https://lbesson.mit-license.org/)
 
 
@@ -19,34 +19,8 @@ If you want to use the old plugin version visit [Old README file](https://github
 - Player Info
 - Saved Games
 
-
 ## Getting started
 Before using this plugin please follow instructions on [Setting Up Google Play Games Services](https://developers.google.com/games/services/console/enabling) official guide.
-
-To export to API 35, you need Godot 4.5 Beta 5. [You can download it here](https://godotengine.org/article/dev-snapshot-godot-4-5-beta-5)
-Additionally, you need to update your plugins in Android Studio and download the new export template, available directly from the editor.
-
-## Download and install the Android SDK.
-
-- You can install the Android SDK using [Android Studio Iguana (version 2023.2.1) or later](https://developer.android.com/studio/).
-	- Run it once to complete the SDK setup using these [instructions](https://developer.android.com/studio/intro/update#sdk-manager).
-	- Ensure that the [required packages](https://developer.android.com/studio/intro/update#required) are installed as well.
-		- Android SDK Platform-Tools version 35.0.0 or later
-		- Android SDK Build-Tools version 35.0.0
-		- Android SDK Platform 35
-		- Android SDK Command-line Tools (latest)
-	- Ensure that the [NDK and CMake are installed and configured](https://developer.android.com/studio/projects/install-ndk).
-		- CMake version 3.10.2.4988404
-		- NDK version r28b (28.1.13356709)
-
-
-- Alternatively, you can install the Android SDK with the sdkmanager command line tool.
-	- Install the command line tools package using these [instructions](https://developer.android.com/tools/sdkmanager).
-	- Once the command line tools are installed, run the following sdkmanager command to complete the setup process:
- ```markdown
-sdkmanager --sdk_root=<android_sdk_path> "platform-tools" "build-tools;35.0.0" "platforms;android-35" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;28.1.13356709"
- ```
-
 ### Set up
 - Download `GPGSS.zip` from [releases](https://github.com/finepointcgi/PGSGP/releases) page.
 - Unzip the file into the `res://addons/` folder
@@ -451,4 +425,3 @@ func _on_create_new_snapshot(name):
 Check `adb logcat` for debuging.
 To filter only Godot messages use next command:
 `adb logcat -s godot`
-
